@@ -2,7 +2,9 @@
 #define VECTOR_H
 
 #include <stddef.h>
-#include <Itor.h>
+#include "itor.h"
+#include <stdexcept>
+
 
 //Vector methods and fields declaration
 template <class T>
@@ -13,10 +15,9 @@ private:
     size_t items_count;
 public:
     explicit Vector(size_t n);
-
     T& operator[](size_t index);
-
     size_t size();
+    void put(T item);
 };
 
 //Vector iterator methods and fields declaration
@@ -39,7 +40,9 @@ Vector<T>::Vector(size_t n){
 
 template<class T>
 T& Vector<T>::operator[](size_t index){
-    return first_item+index;
+    if(index >= items_count)
+        throw std::out_of_range("Index out of range");
+    return *(first_item+index);
 }
 
 template<class T>

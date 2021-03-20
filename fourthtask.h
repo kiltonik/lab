@@ -2,6 +2,8 @@
 #define FOURTHTASK_H
 
 #include <QDialog>
+#include "vector.h"
+
 
 namespace Ui {
 class FourthTask;
@@ -21,7 +23,8 @@ private slots:
     void on_rewButton_clicked();
 
 private:
-    void initUi();
+    Vector<char> vector;
+    void init_task_data();
     Ui::FourthTask *ui;
 };
 
