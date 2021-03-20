@@ -15,9 +15,7 @@ SOURCES += \
 HEADERS += \
     Itor.h \
     List.h \
-    ListItor.h \
     Vector.h \
-    VectorItor.h \
     mainwindow.h
 
 FORMS += \
