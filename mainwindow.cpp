@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "fourthtask.h"
+#include "fifthtask.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -19,6 +20,13 @@ MainWindow::~MainWindow()
 void MainWindow::on_task_fourth_clicked()
 {
     FourthTask dialog(this);
-//    dialog.show();
+    dialog.setWindowTitle("Task 4");
+    dialog.exec();
+}
+
+void MainWindow::on_task_fifth_clicked()
+{
+    FifthTask dialog(this);
+    dialog.setWindowTitle("Task 5");
     dialog.exec();
 }

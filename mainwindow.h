@@ -18,6 +18,8 @@ public:
 private slots:
     void on_task_fourth_clicked();
 
+    void on_task_fifth_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

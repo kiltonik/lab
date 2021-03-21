@@ -4,6 +4,8 @@
 #include <stddef.h>
 #include "itor.h"
 #include <stdexcept>
+#include <iterator>
+
 
 
 //Vector methods and fields declaration
@@ -14,22 +16,45 @@ private:
     T *first_item;
     size_t items_count;
 public:
+    struct Iterator{
+        using iterator_category = std::forward_iterator_tag;
+        using difference_type   = std::ptrdiff_t;
+        using value_type        = T;
+        using pointer           = T*;
+        using reference         = T&;
+
+        Iterator(pointer ptr) : m_ptr(ptr) {}
+
+        reference operator*() const { return *m_ptr; }
+        pointer operator->() { return m_ptr; }
+        Iterator& operator++() {
+            m_ptr++;
+            return *this;
+        }
+        Iterator operator++(int junk) {
+            Iterator tmp = *this;
+            ++(*this);
+            return tmp;
+        }
+        friend bool operator== (const Iterator& a, const Iterator& b) {
+            return a.m_ptr == b.m_ptr;
+        };
+        friend bool operator!= (const Iterator& a, const Iterator& b) {
+            return a.m_ptr != b.m_ptr;
+        };
+
+    private:
+        pointer m_ptr;
+
+    };
     explicit Vector(size_t n);
     T& operator[](size_t index);
     size_t size();
     void put(T item);
-};
-
-//Vector iterator methods and fields declaration
-template<class T>
-class VectorItor: public Itor<T>{
-    Vector<T> &vector;
-    size_t index;
-
-public:
-    VectorItor(Vector<T>& vector);
-    T* first();
-    T* next();
+    void clear();
+    Iterator begin(){ return Iterator(first_item); }
+    Iterator end() { return Iterator(first_item + items_count); }
+    bool contains(T item);
 };
 
 template<class T>
@@ -51,19 +76,25 @@ size_t Vector<T>::size(){
 }
 
 template<class T>
-VectorItor<T>::VectorItor(Vector<T>& vector){
-    this->vector = vector;
-    this->index = 0;
+void Vector<T>::clear(){
+    for(
+        T* it = first_item;
+        it != first_item + items_count;
+        ++it
+        )
+            it->~T();
 }
 
 template<class T>
-T* VectorItor<T>::first(){
-    return this->vector[0];
-}
-
-template<class T>
-T* VectorItor<T>::next(){
-    return this->vector(++index);
+bool Vector<T>::contains(T item){
+    for(
+        T* it = first_item;
+        it != first_item + items_count;
+        ++it
+    )
+        if((*it) == item)
+            return true;
+    return false;
 }
 
 #endif // VECTOR_H
