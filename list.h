@@ -2,6 +2,8 @@
 #define LIST_H
 
 #include "itor.h"
+#include <iterator>
+
 
 //C++ shit
 template <class T> class List;
@@ -25,22 +27,54 @@ class List {
 public:
     List();
     void put(T*);
-    T* getCurrent();
+
+    T* getCurrent();struct Iterator{
+        using iterator_category = std::forward_iterator_tag;
+        using difference_type   = std::ptrdiff_t;
+        using value_type        = Node<T>;
+        using pointer           = Node<T>*;
+        using reference         = Node<T>&;
+
+        Iterator(pointer ptr) : m_ptr(ptr) {}
+
+        reference operator*() const { return *m_ptr; }
+        pointer operator->() { return m_ptr; }
+        Iterator& operator++() {
+            m_ptr = m_ptr->next;
+            return *this;
+        }
+        Iterator operator++(int junk) {
+            Iterator tmp = *this;
+            (*this)->next;
+            return tmp;
+        }
+        friend bool operator== (const Iterator& a, const Iterator& b) {
+            return a.m_ptr == b.m_ptr;
+        };
+        friend bool operator!= (const Iterator& a, const Iterator& b) {
+            return a.m_ptr != b.m_ptr;
+        };
+
+    private:
+        pointer m_ptr;
+
+    };
+    Iterator begin(){
+        Node<T>* cur = currentNode;
+        while(cur->prev){
+            cur = cur->prev;
+        }
+        return Iterator(cur);
+    }
+    Iterator end() {
+        Node<T>* cur = currentNode;
+        while(cur->next){
+            cur = cur->next;
+        }
+        return Iterator(cur);
+    }
 private:
     Node<T>* currentNode;
-    template<typename  P>
-    friend class ListItor;
-};
-
-//Iterator methods and fields declaration
-template<class T>
-class ListItor: public Itor<T>{
-private:
-    List<T>* list;
-public:
-    ListItor(List<T>& list);
-    T* first();
-    T* next();
 };
 
 template<class T>
@@ -70,19 +104,5 @@ template<class T>
 T* List<T>::getCurrent(){
     return currentNode->item;
 }
-
-template<class T>
-ListItor<T>::ListItor(List<T>& list){
-    this->list = list;
-}
-
-template<class T>
-T* ListItor<T>::first(){
-    Node<T>* firstNode = list->currentNode;
-    while(firstNode->prev) firstNode = firstNode->prev;
-    return firstNode->item;
-}
-
-
 
 #endif // LIST_H
