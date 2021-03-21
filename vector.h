@@ -31,9 +31,18 @@ public:
             m_ptr++;
             return *this;
         }
+        Iterator& operator--() {
+            m_ptr--;
+            return *this;
+        }
         Iterator operator++(int junk) {
             Iterator tmp = *this;
             ++(*this);
+            return tmp;
+        }
+        Iterator operator--(int junk) {
+            Iterator tmp = *this;
+            --(*this);
             return tmp;
         }
         friend bool operator== (const Iterator& a, const Iterator& b) {
