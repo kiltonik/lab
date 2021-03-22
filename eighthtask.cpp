@@ -13,15 +13,6 @@ EighthTask::~EighthTask()
     delete ui;
 }
 
-// Метод добавляет запись новую запись
-void EighthTask::on_pushButton_clicked()
-{
-    QString item = ui->presence_edit->text(); //Введенная информация в формате день, студент.
-    //Другие форматы я отсеку потом
-
-    ui->presence_list->addItem(item);
-}
-
 //Метод будет закидывать в разные списки студентов на экране
 void EighthTask::on_show_students_presence_clicked()
 {
@@ -40,4 +31,13 @@ void EighthTask::on_clear_data_clicked()
     ui->presence_list->clear();
     ui->students_all_present->clear();
     ui->students_some_present->clear();
+}
+
+// Метод добавляет запись новую запись
+void EighthTask::on_add_presence_clicked()
+{
+    QString item = ui->presence_edit->text(); //Введенная информация в формате день, студент.
+    //Другие форматы я отсеку потом
+
+    ui->presence_list->addItem(item);
 }
