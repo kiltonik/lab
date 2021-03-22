@@ -3,6 +3,9 @@
 #include "fourthtask.h"
 #include "fifthtask.h"
 #include "sixthtask.h"
+#include "eighthtask.h"
+#include "ninthtask.h"
+#include "tenthtask.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -35,6 +38,27 @@ void MainWindow::on_task_fifth_clicked()
 void MainWindow::on_task_six_clicked()
 {
     SixthTask dialog(this);
+    dialog.setWindowTitle("Task 6");
+    dialog.exec();
+}
+
+void MainWindow::on_task_eight_clicked()
+{
+    EighthTask dialog(this);
+    dialog.setWindowTitle("Task 6");
+    dialog.exec();
+}
+
+void MainWindow::on_task_ninth_clicked()
+{
+    NinthTask dialog(this);
+    dialog.setWindowTitle("Task 6");
+    dialog.exec();
+}
+
+void MainWindow::on_task_tenth_clicked()
+{
+    TenthTask dialog(this);
     dialog.setWindowTitle("Task 6");
     dialog.exec();
 }

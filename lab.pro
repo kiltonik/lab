@@ -9,28 +9,37 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    eighthtask.cpp \
     fifthtask.cpp \
     fourthtask.cpp \
     main.cpp \
     mainwindow.cpp \
+    ninthtask.cpp \
     sixthtask.cpp \
+    tenthtask.cpp \
     utils.cpp
 
 HEADERS += \
+    eighthtask.h \
     fifthtask.h \
     fourthtask.h \
     itor.h \
     list.h \
     mainwindow.h \
+    ninthtask.h \
     sixthtask.h \
+    tenthtask.h \
     utils.h \
     vector.h
 
 FORMS += \
+    eighthtask.ui \
     fifthtask.ui \
     fourthtask.ui \
     mainwindow.ui \
-    sixthtask.ui
+    ninthtask.ui \
+    sixthtask.ui \
+    tenthtask.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

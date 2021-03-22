@@ -22,6 +22,12 @@ private slots:
 
     void on_task_six_clicked();
 
+    void on_task_eight_clicked();
+
+    void on_task_ninth_clicked();
+
+    void on_task_tenth_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
