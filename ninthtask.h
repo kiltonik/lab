@@ -1,13 +1,14 @@
 #ifndef NINTHTASK_H
 #define NINTHTASK_H
 
-#include <QDialog>
+#include "basedialog.h"
+
 
 namespace Ui {
 class NinthTask;
 }
 
-class NinthTask : public QDialog
+class NinthTask : public BaseDialog
 {
     Q_OBJECT
 
@@ -16,7 +17,8 @@ public:
     ~NinthTask();
 
 private slots:
-    void on_pushButton_clicked();
+
+    void on_calculate_time_button_clicked();
 
 private:
     Ui::NinthTask *ui;

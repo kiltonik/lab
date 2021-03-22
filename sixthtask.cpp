@@ -1,7 +1,6 @@
 #include "sixthtask.h"
 #include "ui_sixthtask.h"
 #include "utils.h"
-#include <QMessageBox>
 #include <utility>
 
 
@@ -9,7 +8,7 @@ using namespace std;
 
 
 SixthTask::SixthTask(QWidget *parent) :
-    QDialog(parent),
+    BaseDialog(parent),
     ui(new Ui::SixthTask),
     dates(10000)
 {
@@ -25,23 +24,19 @@ void SixthTask::on_add_date_clicked()
 {
     QString date = ui->date_edit->text();
     if(date.isEmpty()){
-        QMessageBox error(this);
-        error.setText("Date can not be empty");
-        error.exec();
+        showErrorMessage("Date can not be empty");
     }
     else{
         int formated_date = this->
                 convert_date_to_numeric_yy_mm_dd(date.toStdString());
         if(formated_date == -1){
-            QMessageBox error(this);
-            error.setText("Date format is not acceptable."
+            showErrorMessage("Date format is not acceptable."
 "\nUse one of the listed bellow:"
 "\n1. MmmYY"
 "\n2. MmmYYYY"
 "\n3. dd.mm.yyyy"
 "\n4. yyyy.mm.dd"
 "\nComma, dot or slash could be used as separator in cases 3-4");
-            error.exec();
         }
         else{
             ui->date_edit->clear();

@@ -1,13 +1,15 @@
 #ifndef EIGHTHTASK_H
 #define EIGHTHTASK_H
 
-#include <QDialog>
+
+#include "basedialog.h"
+
 
 namespace Ui {
 class EighthTask;
 }
 
-class EighthTask : public QDialog
+class EighthTask : public BaseDialog
 {
     Q_OBJECT
 

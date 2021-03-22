@@ -4,7 +4,7 @@
 
 //Здксь прямо в конструкторе добавляй циклом элементы
 TenthTask::TenthTask(QWidget *parent) :
-    QDialog(parent),
+    BaseDialog(parent),
     ui(new Ui::TenthTask)
 {
     ui->setupUi(this);

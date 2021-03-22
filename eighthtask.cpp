@@ -1,11 +1,10 @@
 #include "eighthtask.h"
 #include "ui_eighthtask.h"
 #include "regex"
-#include <QMessageBox>
 
 
 EighthTask::EighthTask(QWidget *parent) :
-    QDialog(parent),
+    BaseDialog(parent),
     ui(new Ui::EighthTask)
 {
     ui->setupUi(this);
@@ -43,15 +42,13 @@ void EighthTask::on_add_presence_clicked()
 {
     QString item = ui->presence_edit->text(); //Введенная информация в формате день, студент.
     if(std::regex_match(
-                item.begin(),
-                item.end(),
+                item.toStdString().begin(),
+                item.toStdString().end(),
                 std::regex("\\d{1,2}, [A-Z][a-z]+"))){
         ui->presence_list->addItem(item);
         //Пропиши тут логику сохранения
     }
-    else{
-        QMessageBox error(this);
-        error.setText("Wrong input format");
-        error.exec();
-    }
+    else
+        showErrorMessage("Wrong input format");
+
 }

@@ -1,13 +1,14 @@
 #ifndef TENTHTASK_H
 #define TENTHTASK_H
 
-#include <QDialog>
+#include "basedialog.h"
+
 
 namespace Ui {
 class TenthTask;
 }
 
-class TenthTask : public QDialog
+class TenthTask : public BaseDialog
 {
     Q_OBJECT
 

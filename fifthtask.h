@@ -1,15 +1,16 @@
 #ifndef FIFTHTASK_H
 #define FIFTHTASK_H
 
-#include <QDialog>
 #include "vector.h"
 #include <string>
+#include "basedialog.h"
+
 
 namespace Ui {
 class FifthTask;
 }
 
-class FifthTask : public QDialog
+class FifthTask : public BaseDialog
 {
     Q_OBJECT
 

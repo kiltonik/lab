@@ -1,15 +1,15 @@
 #ifndef FOURTHTASK_H
 #define FOURTHTASK_H
 
-#include <QDialog>
 #include "vector.h"
+#include "basedialog.h"
 
 
 namespace Ui {
 class FourthTask;
 }
 
-class FourthTask : public QDialog
+class FourthTask : public BaseDialog
 {
     Q_OBJECT
 

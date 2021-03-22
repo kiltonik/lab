@@ -2,9 +2,9 @@
 #include "ui_fourthtask.h"
 
 FourthTask::FourthTask(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::FourthTask),
-    vector(26)
+    BaseDialog(parent),
+    vector(26),
+    ui(new Ui::FourthTask)
 {
     ui->setupUi(this);
     init_task_data();

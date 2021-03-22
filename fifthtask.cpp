@@ -1,12 +1,11 @@
 #include "fifthtask.h"
 #include "ui_fifthtask.h"
-#include <QMessageBox>
 #include "utils.h"
 #include "vector.h"
 
 
 FifthTask::FifthTask(QWidget *parent) :
-    QDialog(parent),
+    BaseDialog(parent),
     items_vector(10000),
     vector_to_exclude(10000),
     ui(new Ui::FifthTask)
@@ -22,18 +21,14 @@ FifthTask::~FifthTask()
 
 bool FifthTask::checkEnteredString(QString string){
     if(string.isEmpty()){
-       QMessageBox error(this);
-       error.setText("Item name can not be empty");
-       error.exec();
+       showErrorMessage("Item name can not be empty");
        return false;
     }
     else if(Utils::stringInEnglish(string.toStdString())){
         return true;
     }
     else{
-        QMessageBox error(this);
-        error.setText("Item name must contain only latin letters");
-        error.exec();
+        showErrorMessage("Item name must contain only latin letters");
         return false;
     }
 }
