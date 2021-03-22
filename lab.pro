@@ -18,6 +18,7 @@ SOURCES += \
     ninthtask.cpp \
     sixthtask.cpp \
     tenthtask.cpp \
+    twelfthtask.cpp \
     utils.cpp
 
 HEADERS += \
@@ -31,6 +32,7 @@ HEADERS += \
     ninthtask.h \
     sixthtask.h \
     tenthtask.h \
+    twelfthtask.h \
     utils.h \
     vector.h
 
@@ -41,7 +43,8 @@ FORMS += \
     mainwindow.ui \
     ninthtask.ui \
     sixthtask.ui \
-    tenthtask.ui
+    tenthtask.ui \
+    twelfthtask.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
