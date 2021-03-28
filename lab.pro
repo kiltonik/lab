@@ -18,6 +18,7 @@ SOURCES += \
     mainwindow.cpp \
     ninthtask.cpp \
     sixthtask.cpp \
+    student.cpp \
     tenthtask.cpp \
     twelfthtask.cpp \
     utils.cpp
@@ -35,6 +36,7 @@ HEADERS += \
     ninthtask.h \
     seventhtask.h \
     sixthtask.h \
+    student.h \
     tenthtask.h \
     twelfthtask.h \
     utils.h \

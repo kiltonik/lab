@@ -1,7 +1,8 @@
 #include "eighthtask.h"
 #include "ui_eighthtask.h"
-#include "regex"
+#include <QRegExp>
 #include <bitset>
+#include <iostream>
 
 
 EighthTask::EighthTask(QWidget *parent) :
@@ -16,21 +17,23 @@ EighthTask::~EighthTask()
     delete ui;
 }
 
-//В этом методе пропиши вызовы свои функций
-//для распределения элементов по двум спискам на экране
-// Метод вызывается при нажатии на кнопку
+
 void EighthTask::on_show_students_presence_clicked()
 {
-    //Метод ниже добавляет студента, у которого >= 8 в нужный список
-    //туда надо подставить QString
-//    ui->students_all_present->addItem();
-
-    //Метод добавляет студента у которого меньше 8 в нужный список
-    //Аналогично нужен QString
-//    ui->students_some_present->addItem();
+    ui->students_all_present->clear();
+    ui->students_some_present->clear();
+    for (auto student: students){
+        int attendance = student.get_attendance();
+        QString out = "Name: " + student.get_name() + ", Present: " + QString::number(attendance);
+        if (attendance >= 8){
+            ui->students_all_present->addItem(out);
+        }
+        else{
+            ui->students_some_present->addItem(out);
+        }
+    }
 }
 
-//Удали тут все локальные данные
 void EighthTask::on_clear_data_clicked()
 {
     ui->presence_list->clear();
@@ -38,16 +41,30 @@ void EighthTask::on_clear_data_clicked()
     ui->students_some_present->clear();
 }
 
-// Метод добавляет запись новую запись
 void EighthTask::on_add_presence_clicked()
 {
-    QString item = ui->presence_edit->text(); //Введенная информация в формате день, студент.
-    if(std::regex_match(
-                item.toStdString().begin(),
-                item.toStdString().end(),
-                std::regex("\\d{1,2}, [A-Z][a-z]+"))){
+    QString item = ui->presence_edit->text();
+    if(item.contains(QRegExp("\\d{1,2}, [A-Z][a-z]+"))){
         ui->presence_list->addItem(item);
-        //Пропиши тут логику сохранения
+        QStringList tokens = item.split(", ");
+        int day = tokens[0].toInt();
+        if (day > 0 && day <= 12){
+            QString name = tokens[1];
+            bool flag = false;
+            for (int i = 0; i < students.size(); i++){
+                if (students[i].get_name() == name){
+                    students[i].set_attendance(day);
+                    flag = true;
+                }
+            }
+            if (!flag){
+                std::bitset<12> attendance_set;
+                attendance_set[day] = true;
+                students.push_back(Student(name, attendance_set));
+            }
+        }
+        else
+            showErrorMessage("Day must be between 1 and 12");
     }
     else
         showErrorMessage("Wrong input format");
