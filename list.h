@@ -15,7 +15,8 @@ private:
     Node();
 public:
     T* item;
-    Node* next, prev;
+    Node<T>* next;
+    Node<T>* prev;
 
     template<class U>
     friend class List;
@@ -87,7 +88,7 @@ void List<T>::put(T* item){
     Node<T>* cur = currentNode;
 
     if(cur == nullptr){
-        currentNode = new Node<T>;
+        currentNode = new Node<T>();
         currentNode->item = item;
     }
     else{

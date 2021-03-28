@@ -1,6 +1,7 @@
 #ifndef INDEXLIST_H
 #define INDEXLIST_H
 #include "list.h"
+#include <stdexcept>
 
 
 template <class T>

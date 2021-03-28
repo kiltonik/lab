@@ -2,6 +2,7 @@
 #include "ui_eighthtask.h"
 #include "regex"
 #include <bitset>
+#include <QRegExp>
 
 
 EighthTask::EighthTask(QWidget *parent) :
@@ -42,10 +43,7 @@ void EighthTask::on_clear_data_clicked()
 void EighthTask::on_add_presence_clicked()
 {
     QString item = ui->presence_edit->text(); //Введенная информация в формате день, студент.
-    if(std::regex_match(
-                item.toStdString().begin(),
-                item.toStdString().end(),
-                std::regex("\\d{1,2}, [A-Z][a-z]+"))){
+    if(item.contains(QRegExp("\\d{1,2}, [A-Z][a-z]+"))){
         ui->presence_list->addItem(item);
         //Пропиши тут логику сохранения
     }
