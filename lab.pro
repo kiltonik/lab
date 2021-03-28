@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     basedialog.cpp \
     eighthtask.cpp \
+    eleventhtask.cpp \
     fifthtask.cpp \
     fourthtask.cpp \
     main.cpp \
@@ -24,12 +25,15 @@ SOURCES += \
 HEADERS += \
     basedialog.h \
     eighthtask.h \
+    eleventhtask.h \
     fifthtask.h \
     fourthtask.h \
+    indexlist.h \
     itor.h \
     list.h \
     mainwindow.h \
     ninthtask.h \
+    seventhtask.h \
     sixthtask.h \
     tenthtask.h \
     twelfthtask.h \

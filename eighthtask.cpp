@@ -1,6 +1,7 @@
 #include "eighthtask.h"
 #include "ui_eighthtask.h"
 #include "regex"
+#include <bitset>
 
 
 EighthTask::EighthTask(QWidget *parent) :
