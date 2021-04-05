@@ -1,5 +1,7 @@
 #ifndef EIGHTHTASK_H
 #define EIGHTHTASK_H
+#include "student.h"
+#include <bitset>
 
 
 #include "basedialog.h"
@@ -25,6 +27,7 @@ private slots:
     void on_add_presence_clicked();
 
 private:
+    std::vector<Student> students;
     Ui::EighthTask *ui;
 };
 
